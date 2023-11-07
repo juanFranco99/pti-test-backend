@@ -3,9 +3,9 @@ package com.pti.ptitestbackend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+@Entity(name = "departamentos")
 @Data
-public class Departamentos {
+public class Departamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +16,7 @@ public class Departamentos {
     @Column
     private String iso;
 
-
+//    @OneToMany
+//    private Ciudades ciudades;
 
 }

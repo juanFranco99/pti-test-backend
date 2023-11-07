@@ -1,6 +1,6 @@
 package com.pti.ptitestbackend.service;
 
-import com.pti.ptitestbackend.model.Departamentos;
+import com.pti.ptitestbackend.model.Departamento;
 import com.pti.ptitestbackend.repository.DepartamentosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,24 +15,24 @@ public class DepartamentosService {
     private DepartamentosRepository repository;
 
     //Lista todas los departamentos
-    public List<Departamentos> getAll(){
+    public List<Departamento> getAll(){
         return repository.findAll();
     }
 
     //Obtiene por Id el departamento
-    public Departamentos getDepartamentosById(Long id){
-        Optional<Departamentos> Departamentos = repository.findById(id);
-        return Departamentos.orElseGet(Departamentos::new);
+    public Departamento getDepartamentosById(Long id){
+        Optional<Departamento> Departamentos = repository.findById(id);
+        return Departamentos.orElseGet(Departamento::new);
     }
 
     //Crea un nuevo departamento
-    public Departamentos addDepartamentos(Departamentos Departamentos){
+    public Departamento addDepartamentos(Departamento Departamentos){
         return repository.save(Departamentos);
     }
 
     //Actualiza el departamento
-    public Departamentos updateDepartamentos(Long id, Departamentos Departamentos){
-        Optional<Departamentos> opt = repository.findById(id);
+    public Departamento updateDepartamentos(Long id, Departamento Departamentos){
+        Optional<Departamento> opt = repository.findById(id);
         if(opt.isEmpty()){
             throw new RuntimeException(String.format("El Departamento con el id %s no fue encontrado", id));
         }
@@ -42,7 +42,7 @@ public class DepartamentosService {
 
     //Elimina por Id
     public void deleteDepartamentos(Long id){
-        Optional<Departamentos> opt = repository.findById(id);
+        Optional<Departamento> opt = repository.findById(id);
         if(opt.isEmpty()){
             throw new RuntimeException(String.format("El departamento con el id %s no fue encontrado", id));
         }

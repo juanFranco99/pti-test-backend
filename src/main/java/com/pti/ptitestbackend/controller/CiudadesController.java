@@ -1,7 +1,7 @@
 package com.pti.ptitestbackend.controller;
 
-import com.pti.ptitestbackend.model.Departamento;
-import com.pti.ptitestbackend.service.DepartamentosService;
+import com.pti.ptitestbackend.model.Ciudades;
+import com.pti.ptitestbackend.service.CiudadesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,21 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/departamentos")
-public class DepartamentosController extends GenericController {
-
+@RequestMapping("v1/ciudades")
+public class CiudadesController extends GenericController {
     @Autowired
-    private DepartamentosService service;
+    private CiudadesService service;
 
     @GetMapping
-    public ResponseEntity<List<Departamento>> list(){
+    public ResponseEntity<List<Ciudades>> list(){
         return ResponseEntity.ok().body(service.getAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
         try {
-            Departamento entidad = service.getDepartamentosById(id);
+            Ciudades entidad = service.getCiudadessById(id);
             return success(entidad);
         }catch (Exception e) {
             return badRequest(e);
@@ -31,20 +30,20 @@ public class DepartamentosController extends GenericController {
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody Departamento departamento ) {
+    public ResponseEntity<?> add(@RequestBody Ciudades Ciudades ) {
         try{
-            Departamento departamentosAdd = service.addDepartamentos(departamento);
-            return success(departamentosAdd);
+            Ciudades CiudadessAdd = service.addCiudadess(Ciudades);
+            return success(CiudadessAdd);
         } catch (Exception e) {
             return badRequest(e);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Departamento obj) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Ciudades obj) {
         try {
-            Departamento departamento = service.updateDepartamentos(id, obj);
-            return success(departamento);
+            Ciudades Ciudades = service.updateCiudadess(id, obj);
+            return success(Ciudades);
         }catch (Exception e) {
             return badRequest(e);
         }
@@ -53,11 +52,10 @@ public class DepartamentosController extends GenericController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
-            service.deleteDepartamentos(id);
+            service.deleteCiudadess(id);
             return deleteRequest();
         }catch (Exception e) {
             return badRequest(e);
         }
     }
-
 }
