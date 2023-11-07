@@ -14,5 +14,6 @@ public class Ciudades {
     private String nombre;
 
     @ManyToOne
+    @JoinColumn(name = "id_departamento")
     private Departamento departamento;
 }
