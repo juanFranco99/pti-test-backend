@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DepertamentosService {
+public class DepartamentosService {
 
     @Autowired
     private DepartamentosRepository repository;
@@ -41,8 +41,11 @@ public class DepertamentosService {
     }
 
     //Elimina por Id
-    public String deleteDepartamentos(Long id){
+    public void deleteDepartamentos(Long id){
+        Optional<Departamentos> opt = repository.findById(id);
+        if(opt.isEmpty()){
+            throw new RuntimeException(String.format("El departamento con el id %s no fue encontrado", id));
+        }
         repository.deleteById(id);
-        return "Departamento eliminado correctamente";
     }
 }
